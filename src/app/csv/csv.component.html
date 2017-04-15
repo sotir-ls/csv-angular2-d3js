@@ -1,0 +1,27 @@
+<div class="container">
+	<div class="row">
+		<div class="col-sm-2">
+			<button class="btn btn-info btn-block spacing top" (click)="readCSV()">Update Table</button>
+		</div>
+		<div class="col-sm-4 spacing top">
+			<input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx,.csv">
+		</div>
+		<div class="col-sm-4 spacing top">
+			<p>You have just uploaded : {{fileName}}</p>
+		</div>
+		<div class="col-sm-12 spacing top">
+			<table class="table table-condensed">
+				<thead class="thead-default">
+					<tr>
+						<th *ngFor="let header of headers">{{header}}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let x of csvData | slice:1">
+						<td *ngFor="let y of x">{{ y }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

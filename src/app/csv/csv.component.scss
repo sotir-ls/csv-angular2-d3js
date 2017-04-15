@@ -1,0 +1,10 @@
+$default-space : 15px;
+
+:host{
+    .spacing{
+        &.top{ margin-top : $default-space;}
+        &.bottom{ margin-bottom: $default-space};
+        &.left{ margin-bottom: $default-space};
+        &.right{ margin-bottom: $default-space};
+    }
+}
