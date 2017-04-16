@@ -7,4 +7,10 @@ $default-space : 15px;
         &.left{ margin-bottom: $default-space};
         &.right{ margin-bottom: $default-space};
     }
+
+    svg rect {
+        &:hover{
+            opacity: 0.5;
+        }
+    }
 }

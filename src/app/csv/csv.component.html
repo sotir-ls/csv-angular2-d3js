@@ -1,27 +1,45 @@
 <div class="container">
 	<div class="row">
 		<div class="col-sm-2">
-			<button class="btn btn-info btn-block spacing top" (click)="readCSV()">Update Table</button>
+			<button class="btn btn-info btn-block spacing top" (click)="readCSV()">Render CSV Data</button>
 		</div>
 		<div class="col-sm-4 spacing top">
-			<input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx,.csv">
+			<div class="form-group">
+				<input class="form-control" type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".csv" #fileInput>
+			</div>
 		</div>
 		<div class="col-sm-4 spacing top">
 			<p>You have just uploaded : {{fileName}}</p>
 		</div>
-		<div class="col-sm-12 spacing top">
-			<table class="table table-condensed">
+		<div class="col-sm-12 spacing top" *ngIf="!isValid">
+			<div class="alert alert-warning" role="alert">
+				<strong>Please provide a demo file for the input.</strong>
+			</div>
+		</div>
+		<div class="col-sm-6 spacing top">
+			<p *ngIf="!csvData.length > 0">Upload a csv file (there is a test.csv in the project).</p>
+			<table class="table table-condensed" *ngIf="!csvData.length == 0">
 				<thead class="thead-default">
 					<tr>
-						<th *ngFor="let header of headers">{{header}}</th>
+						<th>Data</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr *ngFor="let x of csvData | slice:1">
+					<tr *ngFor="let x of csvData">
 						<td *ngFor="let y of x">{{ y }}</td>
 					</tr>
 				</tbody>
 			</table>
+		</div>
+		<div class="col-sm-6 spacing top">
+			<div class="row">
+				<div class="col-sm-12">
+					<div id="barChartGraph"></div>
+				</div>
+				<div class="col-sm-12">
+					<div id="pieChartGraph"></div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
